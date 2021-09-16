@@ -1,4 +1,5 @@
 import React from "react";
+import ItemCount from "../ItemCount/ItemCount";
 import Product from "../Product/Product";
 
 const ItemListContainer = () => {
@@ -10,6 +11,7 @@ const ItemListContainer = () => {
             <Product title="Reloj 4" price="$1400" />
             <Product title="Reloj 5" price="$1600" />
             <Product title="Reloj 6" price="$5040" />
+            <ItemCount />
         </div>
     )
 }

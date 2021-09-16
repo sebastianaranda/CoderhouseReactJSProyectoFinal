@@ -1,0 +1,11 @@
+.itemCount{
+    width: 160px;
+    margin: 0 auto;
+    padding: 4px 20px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.75);
+    border-radius: 6px;
+}
