@@ -1,0 +1,24 @@
+.producto{
+    width: 250px;
+    box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.75);
+    border-radius: 6px;
+    padding: 16px;
+    margin: 15px auto;
+    .imagen-container{
+        width: 100%;
+        .imagen{
+            width: 100%;
+        }
+    }
+    .titulo{
+        text-align: left;
+    }
+    .precio{
+        text-align: right;
+    }
+    .btnComprar{
+        width: 100%;
+        height: 36px;
+        padding: 0px 16px;
+    }
+}

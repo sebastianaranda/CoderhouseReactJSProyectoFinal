@@ -1,0 +1,11 @@
+.cardWidget{
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    &:hover{
+        color: yellow;
+        cursor: pointer;
+    }
+}

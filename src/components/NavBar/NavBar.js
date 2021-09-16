@@ -1,5 +1,6 @@
 import './.NavBar.scss';
 import logo from '../../assets/logo_authorized_reseller.svg';
+import CardWidget from '../CartWidget/CartWidget';
 
 const NavBar = () => {
     return (
@@ -10,6 +11,11 @@ const NavBar = () => {
                 <a href="#">Productos</a>
                 <a href="#">FAQs</a>
             </nav>
+            <div className="main-navBar__cart">
+                <CardWidget />
+            </div>
+
+
         </header>
     )
 }
