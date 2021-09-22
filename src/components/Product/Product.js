@@ -1,14 +1,13 @@
 import React from 'react'
-import productImg from '../../assets/productos/watch/watch_s3.jpg'
 
 const Product = (props) => {
 
-    const { price, title } = props;
+    const { price, title, image } = props;
 
     return (
         <div className="producto">
             <div className="imagen-container">
-                <img src={productImg} alt="" className="imagen" />
+                <img src={image} alt="" className="imagen" />
             </div>
             <h3 className="titulo">{title}</h3>
             <p className="precio">{price}</p>
