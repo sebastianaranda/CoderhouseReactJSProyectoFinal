@@ -8,6 +8,9 @@
         width: 100%;
         .imagen{
             width: 100%;
+            max-width: 250px;
+            max-height: 250px;
+            object-fit: contain;
         }
     }
     .titulo{

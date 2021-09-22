@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Product = (props) => {
+const Item = (props) => {
 
     const { price, title, image } = props;
 
@@ -16,4 +16,4 @@ const Product = (props) => {
     )
 }
 
-export default Product;
+export default Item;

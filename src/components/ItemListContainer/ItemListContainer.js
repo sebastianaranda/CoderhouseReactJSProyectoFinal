@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import ItemCount from "../ItemCount/ItemCount";
-import Product from "../Product/Product";
+import ItemList from "../ItemList/ItemList";
 
 const ItemListContainer = () => {
 
@@ -19,14 +18,28 @@ const ItemListContainer = () => {
                 {
                     id: '2',
                     title: "Remera 2",
-                    img: './assets/productos/watch/watch_s3.jpg',
+                    img: './assets/productos/watch/watch_nike.jpg',
                     price: '12000',
                     description: 'Hu lala'
                 },
                 {
                     id: '3',
                     title: "Remera 3",
+                    img: './assets/productos/watch/watch_s3.jpg',
+                    price: '1900',
+                    description: 'Hu lala'
+                },
+                {
+                    id: '4',
+                    title: "Remera 4",
                     img: './assets/productos/watch/watch_s6.jpg',
+                    price: '1900',
+                    description: 'Hu lala'
+                },
+                {
+                    id: '5',
+                    title: "Remera 6",
+                    img: './assets/productos/watch/watch_se.jpg',
                     price: '1900',
                     description: 'Hu lala'
                 }
@@ -43,13 +56,8 @@ const ItemListContainer = () => {
     }, [])
 
     return (
-        <div className="listContainer">
-            {items.length !== 0 ? (
-                items.map((item) => {
-                    return <Product key={item.id} title={item.title} price={item.price} image={item.img} />
-                })
-            ) : (<div>Cargando...</div>)}
-
+        <div>
+            <ItemList itemArray={items} />
         </div>
     )
 }
