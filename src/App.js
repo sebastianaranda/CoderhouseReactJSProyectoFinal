@@ -1,14 +1,12 @@
 import './App.css';
 import './styles.scss';
-import NavBar from './components/NavBar/NavBar';
-import ItemListContainer from './components/ItemListContainer/ItemListContainer';
+import AppRouter from './components/AppRouter/AppRouter';
 
 function App() {
 
   return (//JSX
     <div className="App">
-      <NavBar />
-      <ItemListContainer />
+      <AppRouter />
     </div>
   );
 }

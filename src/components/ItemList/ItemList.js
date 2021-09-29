@@ -9,7 +9,7 @@ const ItemList = (props) => {
         <div className="listContainer">
             {itemArray.length !== 0 ? (
                 itemArray.map((item) => {
-                    return <Item key={item.id} title={item.title} price={item.price} image={item.img} />
+                    return <Item key={item.id} image={item.image} title={item.title} price={item.price} description={item.description} />
                 })
             ) : (<div>Cargando...</div>)}
         </div>

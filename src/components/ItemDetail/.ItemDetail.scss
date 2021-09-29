@@ -1,0 +1,36 @@
+@import '../../variables/variables.scss';
+
+.item{
+    width: 80%;
+    max-width: 1000px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(300px, 1fr));
+    margin: 0 auto;
+    font-family: $fontPoppins;
+    &__image{
+        /* height: 200px; */
+        flex: 1;
+        object-fit: cover;
+        box-sizing: border-box;
+        margin: 0 auto;
+    }
+    &__content{
+        flex: 1;
+        box-sizing: border-box;
+        padding: 0px 30px;
+    }
+    &__title{
+        text-align:  left;
+
+    }
+    &__price{
+        text-align: left;
+    }
+    &__description{
+        text-align: left;
+        margin-bottom: 30px;
+    }
+}
+.itemCount{
+    margin: 0 auto;
+}
