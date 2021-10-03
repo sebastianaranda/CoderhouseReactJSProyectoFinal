@@ -12,7 +12,8 @@ function ItemDetailContainer() {
                 image: '/assets/productos/watch/watch_hermes.jpg',
                 title: 'Apple Watch Hermès',
                 price: '1229',
-                description: 'Un equilibrio sublime entre tradición e innovación: la potencia del Apple Watch Series 7 con la exclusiva colección Hermès de esferas y correas.'
+                description: 'Un equilibrio sublime entre tradición e innovación: la potencia del Apple Watch Series 7 con la exclusiva colección Hermès de esferas y correas.',
+                stock: 5
             }
             resolve(mockItem)
         }, 2000)
@@ -25,7 +26,7 @@ function ItemDetailContainer() {
     }, [])
 
     return (
-        <ItemDetails key={itemData.id} image={itemData.image} title={itemData.title} price={itemData.price} description={itemData.description} />
+        <ItemDetails key={itemData.id} image={itemData.image} title={itemData.title} price={itemData.price} description={itemData.description} itemStock={itemData.stock} />
     );
 }
 
