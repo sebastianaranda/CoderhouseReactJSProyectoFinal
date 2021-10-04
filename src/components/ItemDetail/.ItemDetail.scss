@@ -6,9 +6,9 @@
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(300px, 1fr));
     margin: 0 auto;
+    margin-top: 30px;
     font-family: $fontPoppins;
     &__image{
-        /* height: 200px; */
         flex: 1;
         object-fit: cover;
         box-sizing: border-box;

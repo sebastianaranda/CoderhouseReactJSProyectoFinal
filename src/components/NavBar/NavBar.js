@@ -6,17 +6,32 @@ import { Link } from 'react-router-dom';
 const NavBar = () => {
     return (
         <header className="navBar">
-            <img className="navBar__img" src={logo} alt="" />
+            <Link className="navBar__logo" to='/' >
+                <img src={logo} alt="" />
+            </Link>
             <nav className="navBar__nav">
-                <ul>
+                <ul className='navBar__menu'>
                     <Link to="/">
                         <li>Inicio</li>
                     </Link>
-                    <Link to="/detalle/1">
-                        <li>Productos</li>
-                    </Link>
+                    <li className='navBar__productos'>Productos
+                        <ul className='submenu'>
+                            <Link to="/category/iphone">
+                                <div>iPhone</div>
+                            </Link>
+                            <Link to='/category/watch'>
+                                <div>Watch</div>
+                            </Link>
+                            <Link to='/category/mac'>
+                                <div>Mac</div>
+                            </Link>
+                            <Link to='/category/ipad'>
+                                <div>iPad</div>
+                            </Link>
+                        </ul>
+                    </li>
                     <Link to="/faqs">
-                        <li>FAQs</li>
+                        <li>Contacto</li>
                     </Link>
                 </ul>
             </nav>
