@@ -1,7 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Item from '../Item/Item';
+//context
+import CartContext from '../context/CartContext';
 
 const ItemList = (props) => {
+
+    const { contextData } = useContext(CartContext);
 
     const { itemArray } = props;
 

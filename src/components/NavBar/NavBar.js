@@ -3,7 +3,12 @@ import logo from '../../assets/logo_authorized_reseller.svg';
 import CardWidget from '../CartWidget/CartWidget';
 import { Link } from 'react-router-dom';
 
+import ThemeContext from '../context/ThemeContext';
+import { useContext } from 'react';
+
 const NavBar = () => {
+    const { theme, handleTheme } = useContext(ThemeContext);
+
     return (
         <header className="navBar">
             <Link className="navBar__logo" to='/' >
@@ -38,8 +43,6 @@ const NavBar = () => {
             <div className="navBar__cart">
                 <CardWidget />
             </div>
-
-
         </header>
     )
 }

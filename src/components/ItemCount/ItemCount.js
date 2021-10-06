@@ -13,7 +13,8 @@ export default function ItemCount(props) {
                 <p>{props.quantity}</p>
                 <FontAwesomeIcon icon={faPlus} onClick={props.onAdd} />
             </div>
-            <Link to='/cart'><button>Agregar al carrito</button></Link>
+            <button onClick={props.onBuy} style={props.styleCart}>Agregar al carrito</button>
+            <Link to='/cart'><button onClick={props.onBuy} style={props.styleCheckout}>Ir al Checkout</button></Link>
         </div>
     )
 }

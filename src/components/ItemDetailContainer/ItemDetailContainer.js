@@ -172,7 +172,7 @@ function ItemDetailContainer() {
     }, [id])
 
     return (
-        <ItemDetails key={itemData.id} image={itemData.image} title={itemData.title} price={itemData.price} description={itemData.description} itemStock={itemData.stock} />
+        <ItemDetails key={itemData.id} id={itemData.id} image={itemData.image} title={itemData.title} price={itemData.price} description={itemData.description} itemStock={itemData.stock} />
     );
 }
 
