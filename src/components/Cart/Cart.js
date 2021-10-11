@@ -6,10 +6,10 @@ import ItemCart from "../ItemCart/ItemCart";
 
 export default function Cart({ show, hide }) {
 
-    const { products } = useContext(CartContext);
+    const { productsEnCarrito, emptyCart } = useContext(CartContext);
 
     //ToDo borrar este consolelog
-    console.log('Productos desde Cartwidget', products)
+    console.log('Productos desde Cartwidget', productsEnCarrito)
 
     return (
         <div className={`cartContainer ${show ? 'active' : ''}`}>
@@ -18,12 +18,13 @@ export default function Cart({ show, hide }) {
             </div>
             <p className='title'>Tu carrito</p>
             <div className='cartListContainer'>
-                {products.length !== 0 ? (
-                    products.map((item) => {
-                        return <ItemCart key={item.id} id={item.id} image={item.image} title={item.title} price={item.price} description={item.description} />
+                {productsEnCarrito.length !== 0 ? (
+                    productsEnCarrito.map((item) => {
+                        return <ItemCart key={item.id} id={item.id} image={item.image} title={item.title} price={item.price} cant={item.cant} totalPrice={item.totalPrice} description={item.description} />
                     })
                 ) : (<div>Usted no tiene productos en el carrito.</div>)}
             </div>
+            <p className='clearCart' onClick={emptyCart}>Vaciar carrito</p>
         </div>
     )
 }

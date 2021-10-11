@@ -11,7 +11,17 @@ const Item = (props) => {
     const addToCart = () => {
         //ToDo Borrar este console log
         console.log(products)
-        addProduct(props)
+
+        const itemComprado = {
+            id: props.id,
+            image: props.image,
+            title: props.title,
+            price: props.price,
+            description: props.description,
+            cant: 1,
+            totalPrice: props.price * 1
+        }
+        addProduct(itemComprado)
     }
 
     const { id, image, title, price, description } = props;

@@ -27,7 +27,16 @@ function ItemDetails(props) {
 
     const onBuy = () => {
         if (item > 0) {
-            const itemComprado = props;
+            //const itemComprado = props;
+            const itemComprado = {
+                id: props.id,
+                image: props.image,
+                title: props.title,
+                price: props.price,
+                description: props.description,
+                cant: item,
+                totalPrice: props.price * item
+            }
             addProduct(itemComprado)
             setStock(stock - item)
             setItem(0)
