@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import ItemCount from '../ItemCount/ItemCount';
+//context
+import CartContext from '../context/CartContext';
+import { useContext } from 'react';
 
 function ItemDetails(props) {
-
-    const cart = [];
+    const { addProduct } = useContext(CartContext)
 
     const { id, image, title, price, description, itemStock } = props;
-
     const [item, setItem] = useState(0);
     const [stock, setStock] = useState(itemStock);
     const [styleCart, setStyleCart] = useState({
@@ -25,22 +26,18 @@ function ItemDetails(props) {
     }
 
     const onBuy = () => {
-        cart.push({
-            id: id,
-            image: image,
-            title: title,
-            price: price,
-            cant: item
-        })
-        setStock(stock - item)
-        setItem(0)
-        console.log('El carrito es', cart)
-        setStyleCart({
-            'display': 'none'
-        })
-        setStyleCheckout({
-            'display': 'block'
-        })
+        if (item > 0) {
+            const itemComprado = props;
+            addProduct(itemComprado)
+            setStock(stock - item)
+            setItem(0)
+            setStyleCart({
+                'display': 'none'
+            })
+            setStyleCheckout({
+                'display': 'block'
+            })
+        }
     }
 
     return (
@@ -48,9 +45,10 @@ function ItemDetails(props) {
             <img className="item__image" src={image} alt="" />
             <div className="item__content">
                 <h2 className="item__title">{title}</h2>
-                <p className="item__price">${price} USD</p>
+                <p className="item__price">$ {price} USD</p>
                 <p className="item__description">{description}</p>
-                <ItemCount onAdd={onAdd} onRemove={onRemove} quantity={item} onBuy={onBuy} styleCart={styleCart} styleCheckout={styleCheckout} />
+                <ItemCount onAdd={onAdd} onRemove={onRemove} quantity={item}
+                    onBuy={onBuy} styleCart={styleCart} styleCheckout={styleCheckout} />
             </div>
         </div>
     );

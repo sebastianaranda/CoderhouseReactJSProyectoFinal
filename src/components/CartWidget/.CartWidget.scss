@@ -4,8 +4,7 @@
     align-items: center;
     justify-content: center;
     color: white;
-    &:hover{
-        color: yellow;
+    & .icon:hover{
         cursor: pointer;
     }
 }

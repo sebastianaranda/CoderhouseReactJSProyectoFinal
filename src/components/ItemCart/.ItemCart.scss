@@ -1,0 +1,16 @@
+.itemCart{
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0px;
+    box-sizing: border-box;
+    border-bottom: 1px solid gainsboro;
+    & img{
+        width: 100px;
+    }
+    & .delete{
+        cursor: pointer;
+    }
+}

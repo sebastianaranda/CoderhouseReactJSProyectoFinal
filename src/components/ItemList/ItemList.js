@@ -5,7 +5,7 @@ import CartContext from '../context/CartContext';
 
 const ItemList = (props) => {
 
-    const { contextData } = useContext(CartContext);
+    //const { contextData } = useContext(CartContext);
     const { itemArray } = props;
 
     return (

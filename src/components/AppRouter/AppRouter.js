@@ -7,12 +7,12 @@ import DetailsPage from "../../pages/DetailsPage";
 import CategoryPage from "../../pages/CategoryPage";
 import NavBar from "../NavBar/NavBar";
 //context
-import { ThemeProvider } from "../context/ThemeContext";
+import { CartProvider } from "../context/CartContext";
 
 export default function AppRouter() {
     return (
         <BrowserRouter>
-            <ThemeProvider>
+            <CartProvider>
                 <NavBar />
                 <Switch>
                     <Route path="/contacto" component={ContactPage} />
@@ -21,7 +21,7 @@ export default function AppRouter() {
                     <Route exact path="/" component={HomePage} />
                     <Route path="*" component={NotFoundPage} />
                 </Switch>
-            </ThemeProvider>
+            </CartProvider>
         </BrowserRouter>
     )
 }
