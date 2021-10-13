@@ -1,73 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import ItemList from "../ItemList/ItemList";
+//firebase
+import db from "../../firebase";
+import { collection, getDocs } from "@firebase/firestore";
 
 const ItemListContainer = () => {
-
     //PRUEBA
     const { id } = useParams();
+    const [itemsData, setItemsData] = useState([]);
 
-    const [itemsData, setItemsData] = useState([])
-
-    const getItems = new Promise((resolve) => {
+    /* const getItems = new Promise((resolve) => {
         setTimeout(() => {
             const mockItems = [
                 {
-                    id: '1',
-                    image: '/assets/productos/watch/watch_hermes.jpg',
-                    title: 'Apple Watch Hermès',
-                    price: 1229,
-                    description: 'Un equilibrio sublime entre tradición e innovación: la potencia del Apple Watch Series 7 con la exclusiva colección Hermès de esferas y correas.',
-                    stock: 5,
-                    category: 'watch'
-                },
-                {
-                    id: '2',
-                    image: '/assets/productos/watch/watch_nike.jpg',
-                    title: 'Apple Watch Nike',
-                    price: 399,
-                    description: 'l Apple Watch Nike y la app Nike Run Club son el equipo ideal para salir a correr. La nueva carátula Nike se mueve contigo. Ahora puedes ver las rachas y la tabla de ritmo directamente en la app Nike Run Club. Y esto es sólo el comienzo. Da el siguiente paso hacia una mejor forma de correr con el Apple Watch Nike.',
-                    stock: 5,
-                    category: 'watch'
-                },
-                {
-                    id: '3',
-                    image: '/assets/productos/watch/watch_s3.jpg',
-                    title: 'Apple Watch Series 3',
-                    price: 199,
-                    description: 'Te enamora a la cuenta de 3.',
-                    stock: 5,
-                    category: 'watch'
-                },
-                {
-                    id: '4',
-                    image: '/assets/productos/watch/watch_s6.jpg',
-                    title: 'Apple Watch Series 6',
-                    price: 399,
-                    description: 'El Apple Watch Series 6 se adelanta a su tiempo con una app y un sensor revolucio­narios capaces de medir tu oxígeno en sangre. Hazte un electro en cualquier momento y ten a mano tus datos de actividad gracias a la pantalla Retina siempre activa. Este reloj te ayudará a llevar una vida sana, activa y conectada con todo lo que te importa.',
-                    stock: 5,
-                    category: 'watch'
-                },
-                {
-                    id: '5',
-                    image: '/assets/productos/watch/watch_se.jpg',
-                    title: 'Apple Watch SE',
-                    price: 279,
-                    description: 'El Apple Watch SE viene con una amplia pantalla Retina, sensores para registrar tus entrenamientos e increíbles funcionalidades de salud y seguridad.',
-                    stock: 5,
-                    category: 'watch'
-                },
-                {
-                    id: '6',
-                    image: '/assets/productos/mac/mbp16.png',
-                    title: 'MacBook Pro 16"',
-                    price: 2399,
-                    description: 'The best for the brightest. Designed for those who defy limits and change the world, the 16-inch MacBook Pro is by far the most powerful notebook we have ever made. With an immersive Retina display, superfast processors, advanced graphics, the largest battery capacity ever in a MacBook Pro, Magic Keyboard, and massive storage, its the ultimate pro notebook for the ultimate user.',
-                    stock: 5,
-                    category: 'mac'
-                },
-                {
-                    id: '7',
+                    id: 7,
                     image: '/assets/productos/mac/mbp13.png',
                     title: 'MacBook Pro 13"',
                     price: 1299,
@@ -76,7 +23,7 @@ const ItemListContainer = () => {
                     category: 'mac'
                 },
                 {
-                    id: '8',
+                    id: 8,
                     image: '/assets/productos/mac/mba.png',
                     title: 'MacBook Air',
                     price: 999,
@@ -85,7 +32,7 @@ const ItemListContainer = () => {
                     category: 'mac'
                 },
                 {
-                    id: '9',
+                    id: 9,
                     image: '/assets/productos/ipad/ipad_mini.png',
                     title: 'iPad mini',
                     price: 499,
@@ -94,7 +41,7 @@ const ItemListContainer = () => {
                     category: 'ipad'
                 },
                 {
-                    id: '10',
+                    id: 10,
                     image: '/assets/productos/ipad/ipad_air.png',
                     title: 'iPad Air',
                     price: 599,
@@ -103,7 +50,7 @@ const ItemListContainer = () => {
                     category: 'ipad'
                 },
                 {
-                    id: '11',
+                    id: 11,
                     image: '/assets/productos/ipad/ipad_pro.png',
                     title: 'iPad Pro',
                     price: 799,
@@ -112,7 +59,7 @@ const ItemListContainer = () => {
                     category: 'ipad'
                 },
                 {
-                    id: '12',
+                    id: 12,
                     image: '/assets/productos/iphone/iphone_13_pro.jpg',
                     title: 'iPhone 13 Pro',
                     price: 999,
@@ -121,7 +68,7 @@ const ItemListContainer = () => {
                     category: 'iphone'
                 },
                 {
-                    id: '13',
+                    id: 13,
                     image: '/assets/productos/iphone/iphone_13.jpg',
                     title: 'iPhone 13',
                     price: 699,
@@ -130,7 +77,7 @@ const ItemListContainer = () => {
                     category: 'iphone'
                 },
                 {
-                    id: '14',
+                    id: 14,
                     image: '/assets/productos/iphone/iphone_12.jpg',
                     title: 'iPhone 12',
                     price: 599,
@@ -139,7 +86,7 @@ const ItemListContainer = () => {
                     category: 'iphone'
                 },
                 {
-                    id: '15',
+                    id: 15,
                     image: '/assets/productos/iphone/iphone_se.jpg',
                     title: 'iPhone SE',
                     price: 399,
@@ -150,11 +97,12 @@ const ItemListContainer = () => {
             ]
             resolve(mockItems)
         }, 2000)
-    })
+    }) */
 
-    useEffect(() => {
+    /* useEffect(() => {
         getItems.then((response) => {
             let filteredArray;
+
             if (id == null) {
                 filteredArray = response;
             } else {
@@ -162,7 +110,18 @@ const ItemListContainer = () => {
             }
             setItemsData(filteredArray)
         })
-    }, [id])
+    }, [id]) */
+
+    async function getProducts(db) {
+        const productsCol = collection(db, 'products');
+        const productSnapshot = await getDocs(productsCol);
+        const productList = productSnapshot.docs.map(doc => doc.data());
+        return setItemsData(productList);
+    }
+
+    useEffect(() => {
+        getProducts(db)
+    }, [])
 
     return (
         <div>

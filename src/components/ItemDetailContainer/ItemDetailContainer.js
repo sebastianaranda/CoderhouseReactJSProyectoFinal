@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from "react-router";
 import ItemDetails from '../ItemDetail/ItemDetail';
+//BORRAR
+//firebase
+import db from "../../firebase";
+import { collection, getDocs } from "@firebase/firestore";
 
 function ItemDetailContainer() {
 
     const { id } = useParams();
     const [itemData, setItemData] = useState([])
 
-    const getItem = new Promise((resolve) => {
+    /* const getItem = new Promise((resolve) => {
         setTimeout(() => {
             const mockItem = [
                 {
-                    id: '1',
+                    id: 1,
                     image: '/assets/productos/watch/watch_hermes.jpg',
                     title: 'Apple Watch Hermès',
                     price: 1229,
@@ -20,7 +24,7 @@ function ItemDetailContainer() {
                     category: 'watch'
                 },
                 {
-                    id: '2',
+                    id: 2,
                     image: '/assets/productos/watch/watch_nike.jpg',
                     title: 'Apple Watch Nike',
                     price: 399,
@@ -29,7 +33,7 @@ function ItemDetailContainer() {
                     category: 'watch'
                 },
                 {
-                    id: '3',
+                    id: 3,
                     image: '/assets/productos/watch/watch_s3.jpg',
                     title: 'Apple Watch Series 3',
                     price: 199,
@@ -38,7 +42,7 @@ function ItemDetailContainer() {
                     category: 'watch'
                 },
                 {
-                    id: '4',
+                    id: 4,
                     image: '/assets/productos/watch/watch_s6.jpg',
                     title: 'Apple Watch Series 6',
                     price: 399,
@@ -47,7 +51,7 @@ function ItemDetailContainer() {
                     category: 'watch'
                 },
                 {
-                    id: '5',
+                    id: 5,
                     image: '/assets/productos/watch/watch_se.jpg',
                     title: 'Apple Watch SE',
                     price: 279,
@@ -56,7 +60,7 @@ function ItemDetailContainer() {
                     category: 'watch'
                 },
                 {
-                    id: '6',
+                    id: 6,
                     image: '/assets/productos/mac/mbp16.png',
                     title: 'MacBook Pro 16"',
                     price: 2399,
@@ -65,7 +69,7 @@ function ItemDetailContainer() {
                     category: 'mac'
                 },
                 {
-                    id: '7',
+                    id: 7,
                     image: '/assets/productos/mac/mbp13.png',
                     title: 'MacBook Pro 13"',
                     price: 1299,
@@ -74,7 +78,7 @@ function ItemDetailContainer() {
                     category: 'mac'
                 },
                 {
-                    id: '8',
+                    id: 8,
                     image: '/assets/productos/mac/mba.png',
                     title: 'MacBook Air',
                     price: 999,
@@ -83,7 +87,7 @@ function ItemDetailContainer() {
                     category: 'mac'
                 },
                 {
-                    id: '9',
+                    id: 9,
                     image: '/assets/productos/ipad/ipad_mini.png',
                     title: 'iPad mini',
                     price: 499,
@@ -92,7 +96,7 @@ function ItemDetailContainer() {
                     category: 'ipad'
                 },
                 {
-                    id: '10',
+                    id: 10,
                     image: '/assets/productos/ipad/ipad_air.png',
                     title: 'iPad Air',
                     price: 599,
@@ -101,7 +105,7 @@ function ItemDetailContainer() {
                     category: 'ipad'
                 },
                 {
-                    id: '11',
+                    id: 11,
                     image: '/assets/productos/ipad/ipad_pro.png',
                     title: 'iPad Pro',
                     price: 799,
@@ -110,7 +114,7 @@ function ItemDetailContainer() {
                     category: 'ipad'
                 },
                 {
-                    id: '12',
+                    id: 12,
                     image: '/assets/productos/iphone/iphone_13_pro.jpg',
                     title: 'iPhone 13 Pro',
                     price: 999,
@@ -119,7 +123,7 @@ function ItemDetailContainer() {
                     category: 'iphone'
                 },
                 {
-                    id: '13',
+                    id: 13,
                     image: '/assets/productos/iphone/iphone_13.jpg',
                     title: 'iPhone 13',
                     price: 699,
@@ -128,7 +132,7 @@ function ItemDetailContainer() {
                     category: 'iphone'
                 },
                 {
-                    id: '14',
+                    id: 14,
                     image: '/assets/productos/iphone/iphone_12.jpg',
                     title: 'iPhone 12',
                     price: 599,
@@ -137,7 +141,7 @@ function ItemDetailContainer() {
                     category: 'iphone'
                 },
                 {
-                    id: '15',
+                    id: 15,
                     image: '/assets/productos/iphone/iphone_se.jpg',
                     title: 'iPhone SE',
                     price: 399,
@@ -148,12 +152,12 @@ function ItemDetailContainer() {
             ]
             resolve(mockItem)
         }, 2000)
-    })
+    }) */
 
-    useEffect(() => {
+    /* useEffect(() => {
         getItem.then((response) => {
 
-            let productFiltered = response.filter(producto => producto.id === id)
+            let productFiltered = response.filter(producto => producto.id == id)
             let selectedItem;
 
             productFiltered.forEach(producto => {
@@ -169,7 +173,33 @@ function ItemDetailContainer() {
             });
             setItemData(selectedItem)
         })
-    }, [id])
+    }, [id]) */
+
+    async function getProducts(db) {
+        const productsCol = collection(db, 'products');
+        const productSnapshot = await getDocs(productsCol);
+        const productList = productSnapshot.docs.map(doc => doc.data());
+        //TEST
+        let productFiltered = productList.filter(producto => producto.id == id)
+        let selectedItem;
+        productFiltered.forEach(producto => {
+            const { id, image, title, price, description, stock } = producto;
+            selectedItem = {
+                id: id,
+                image: image,
+                title: title,
+                price: price,
+                description: description,
+                stock: stock
+            }
+        });
+        return setItemData(selectedItem);
+        //return setItemsData(productList);
+    }
+
+    useEffect(() => {
+        getProducts(db)
+    }, [])
 
     return (
         <ItemDetails key={itemData.id} id={itemData.id} image={itemData.image} title={itemData.title} price={itemData.price} description={itemData.description} itemStock={itemData.stock} />

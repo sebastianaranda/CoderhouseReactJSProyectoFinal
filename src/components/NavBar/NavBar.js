@@ -3,13 +3,7 @@ import logo from '../../assets/logo_authorized_reseller.svg';
 import CardWidget from '../CartWidget/CartWidget';
 import { Link } from 'react-router-dom';
 
-import CartContext from '../context/CartContext';
-import { useContext } from 'react';
-
 const NavBar = () => {
-    const { cart, handleCart } = useContext(CartContext)
-
-    console.log('Cart desde NAVBAR', cart)
 
     return (
         <header className="navBar">
@@ -43,7 +37,7 @@ const NavBar = () => {
                 </ul>
             </nav>
             <div className="navBar__cart">
-                <CardWidget cartQuantity={cart} />
+                <CardWidget />
             </div>
         </header>
     )

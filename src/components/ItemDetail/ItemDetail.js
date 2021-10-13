@@ -4,10 +4,10 @@ import ItemCount from '../ItemCount/ItemCount';
 import CartContext from '../context/CartContext';
 import { useContext } from 'react';
 
-function ItemDetails(props) {
-    const { addProduct } = useContext(CartContext)
+function ItemDetails(details) {
+    const { id, image, title, price, description, itemStock } = details;
 
-    const { id, image, title, price, description, itemStock } = props;
+    const { addItem } = useContext(CartContext)
     const [item, setItem] = useState(0);
     const [stock, setStock] = useState(itemStock);
     const [styleCart, setStyleCart] = useState({
@@ -27,17 +27,14 @@ function ItemDetails(props) {
 
     const onBuy = () => {
         if (item > 0) {
-            //const itemComprado = props;
             const itemComprado = {
-                id: props.id,
-                image: props.image,
-                title: props.title,
-                price: props.price,
-                description: props.description,
-                cant: item,
-                totalPrice: props.price * item
+                id: id,
+                image: image,
+                title: title,
+                price: price,
+                description: description
             }
-            addProduct(itemComprado)
+            addItem(itemComprado, item)
             setStock(stock - item)
             setItem(0)
             setStyleCart({
@@ -51,7 +48,7 @@ function ItemDetails(props) {
 
     return (
         <div className="item">
-            <img className="item__image" src={image} alt="" />
+            <img className="item__image" src={`/assets/productos/${image}`} alt="" />
             <div className="item__content">
                 <h2 className="item__title">{title}</h2>
                 <p className="item__price">$ {price} USD</p>

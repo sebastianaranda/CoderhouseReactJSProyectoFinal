@@ -1,59 +1,103 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 
 const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
     //Custom Provider
-    const [productsEnCarrito, setProducts] = useState([])
+    const [cartItems, setCartItems] = useState([])
+    const [total, setTotal] = useState(0)
+    const [price, setPrice] = useState(0)
 
-    const addProduct = (product) => {
-        //ToDo Borrar este console log
-        console.log('Este es el producto', product)
-        const isInCart = productsEnCarrito.some(producto => producto.id === product.id);
-        //ToDo Borrar este console log
-        console.log(isInCart)
-        if (isInCart) {
-            const productos = productsEnCarrito.map(producto => {
-                if (producto.id == product.id) {
-                    producto.cant = producto.cant + product.cant;
-                    producto.price = product.price;
-                    producto.totalPrice = producto.totalPrice + product.totalPrice;
-                }
-                return producto;
-            });
-            setProducts([...productos]);
+    useEffect(() => {
+        setTotal(handleTotal())
+        setPrice(handleTotalPrice())
+    }, [cartItems])
+
+    const addItem = (item, count) => {
+        let cartElement = { item, count }
+        let cartAux = []
+        if (isInCart(item)) {
+            cartElement = cartItems.find(element => element.item.id === item.id)
+            cartElement.count = cartElement.count + count
+            cartAux = [...cartItems]
         } else {
-            setProducts([...productsEnCarrito, product])
+            cartAux = [cartElement, ...cartItems]
         }
-        //ToDo Borrar este console log
-        console.log("Productos agregados al carrito", productsEnCarrito)
+        setCartItems(cartAux)
     }
 
-    const deleteProduct = (id) => {
-        //!ESTO NO ESTA ANDANDO BIEN
-        for (let i = 0; i < productsEnCarrito.length; i++) {
-            if (productsEnCarrito[i].id == id) {
-                if (productsEnCarrito[i].cant > 1) {
-                    productsEnCarrito[i].cant = productsEnCarrito[i].cant - 1;
-                    productsEnCarrito[i].totalPrice = productsEnCarrito[i].totalPrice - productsEnCarrito[i].price;
-                } else {
-                    setProducts(productsEnCarrito.splice(i, 1))
-                }
+    const removeItem = (item) => {
+        if (isInCart(item)) {
+            const cartElements = cartItems.filter(element => element.item.id !== item.id) || []
+            setCartItems([...cartElements])
+        }
+    }
+
+    const clear = () => {
+        return setCartItems([])
+    }
+
+    const isInCart = (item) => {
+        return cartItems && cartItems.some(element => element.item.id === item.id)
+    }
+
+    const removeOneItem = item => {
+        if (isInCart(item)) {
+            let cartElement = cartItems.find(element => element.item.id === item.id)
+            if (cartElement.count === 1) {
+                removeItem(item)
+            } else {
+                let cart = cartItems
+                cart.map(element => {
+                    if (element.item.id === item.id) {
+                        element.count = element.count - 1
+                    }
+                    return element
+                })
+                setCartItems([...cart])
             }
         }
-        setProducts(productsEnCarrito)
     }
 
-    const emptyCart = () => {
-        console.log('borraste carrito')
-        setProducts([])
+    const handleTotalPriceByItem = () => {
+        let newCartItems = cartItems
+        const totalPriceCart = newCartItems.map(element => {
+            return {
+                ...element,
+                price: element.item.price * element.count
+            }
+        })
+        return totalPriceCart
+    }
+
+    const handleTotal = () => {
+        const initialValue = 0
+        return (
+            cartItems && cartItems.reduce((accumulator, currentValue) => {
+                return accumulator + currentValue.count
+            }, initialValue)
+        )
+    }
+
+    const handleTotalPrice = () => {
+        const cartAux = handleTotalPriceByItem()
+        const initialValue = 0
+        return (cartAux && cartAux.reduce((accumulator, currentValue) => {
+            return accumulator + currentValue.price
+        }, initialValue)
+        )
     }
 
     const data = {
-        productsEnCarrito,
-        addProduct,
-        deleteProduct,
-        emptyCart
+        addItem,
+        removeItem,
+        clear,
+        isInCart,
+        removeOneItem,
+        cartItems,
+        total,
+        price,
+        handleTotalPriceByItem
     }
 
     return (

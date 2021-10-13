@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react"
+import React, { useContext } from "react"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import CartContext from "../context/CartContext"
@@ -6,10 +6,7 @@ import ItemCart from "../ItemCart/ItemCart";
 
 export default function Cart({ show, hide }) {
 
-    const { productsEnCarrito, emptyCart } = useContext(CartContext);
-
-    //ToDo borrar este consolelog
-    console.log('Productos desde Cartwidget', productsEnCarrito)
+    const { cartItems, clear } = useContext(CartContext)
 
     return (
         <div className={`cartContainer ${show ? 'active' : ''}`}>
@@ -18,13 +15,14 @@ export default function Cart({ show, hide }) {
             </div>
             <p className='title'>Tu carrito</p>
             <div className='cartListContainer'>
-                {productsEnCarrito.length !== 0 ? (
-                    productsEnCarrito.map((item) => {
-                        return <ItemCart key={item.id} id={item.id} image={item.image} title={item.title} price={item.price} cant={item.cant} totalPrice={item.totalPrice} description={item.description} />
+                {cartItems.length !== 0 ? (
+                    cartItems.map(element => {
+                        return <ItemCart key={element.item.id} {...element} />
                     })
                 ) : (<div>Usted no tiene productos en el carrito.</div>)}
             </div>
-            <p className='clearCart' onClick={emptyCart}>Vaciar carrito</p>
+            <p className='clearCart' onClick={clear}>Vaciar carrito</p>
+            <p className='clearCart'>Generar orden</p>
         </div>
     )
 }
