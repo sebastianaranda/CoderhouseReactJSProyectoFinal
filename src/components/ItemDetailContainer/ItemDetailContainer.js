@@ -11,7 +11,7 @@ function ItemDetailContainer() {
     const { id } = useParams();
     const [itemData, setItemData] = useState([])
 
-    /* const getItem = new Promise((resolve) => {
+    const getItem = new Promise((resolve) => {
         setTimeout(() => {
             const mockItem = [
                 {
@@ -152,9 +152,9 @@ function ItemDetailContainer() {
             ]
             resolve(mockItem)
         }, 2000)
-    }) */
+    })
 
-    /* useEffect(() => {
+    useEffect(() => {
         getItem.then((response) => {
 
             let productFiltered = response.filter(producto => producto.id == id)
@@ -173,9 +173,9 @@ function ItemDetailContainer() {
             });
             setItemData(selectedItem)
         })
-    }, [id]) */
+    }, [id])
 
-    async function getProducts(db) {
+    /* async function getProducts(db) {
         const productsCol = collection(db, 'products');
         const productSnapshot = await getDocs(productsCol);
         const productList = productSnapshot.docs.map(doc => doc.data());
@@ -199,7 +199,7 @@ function ItemDetailContainer() {
 
     useEffect(() => {
         getProducts(db)
-    }, [])
+    }, []) */
 
     return (
         <ItemDetails key={itemData.id} id={itemData.id} image={itemData.image} title={itemData.title} price={itemData.price} description={itemData.description} itemStock={itemData.stock} />

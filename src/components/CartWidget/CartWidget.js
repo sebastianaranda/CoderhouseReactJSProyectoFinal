@@ -7,7 +7,7 @@ import CartContext from "../context/CartContext";
 export default function CardWidget() {
 
     const [showCart, setShowCart] = useState(false)
-    const { price } = useContext(CartContext)
+    const { totalPrice } = useContext(CartContext)
 
     const handleCart = () => {
         !showCart ? setShowCart(true) : setShowCart(false)
@@ -16,7 +16,7 @@ export default function CardWidget() {
     return (
         <div className="cardWidget">
             <FontAwesomeIcon className='icon' icon={faShoppingCart} onClick={handleCart} />
-            <p className="cardWidget-cant">{price}</p>
+            <p className="cardWidget-cant">{totalPrice}</p>
             <Cart show={showCart} hide={handleCart} />
         </div>
     )

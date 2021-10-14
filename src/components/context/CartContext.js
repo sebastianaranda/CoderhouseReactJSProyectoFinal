@@ -5,30 +5,33 @@ const CartContext = createContext();
 const CartProvider = ({ children }) => {
     //Custom Provider
     const [cartItems, setCartItems] = useState([])
-    const [total, setTotal] = useState(0)
-    const [price, setPrice] = useState(0)
+    const [totalPrice, setTotalPrice] = useState(0)
 
     useEffect(() => {
-        setTotal(handleTotal())
-        setPrice(handleTotalPrice())
+        setTotalPrice(handleTotalPrice())
     }, [cartItems])
 
     const addItem = (item, count) => {
         let cartElement = { item, count }
         let cartAux = []
         if (isInCart(item)) {
-            cartElement = cartItems.find(element => element.item.id === item.id)
+            cartElement = cartItems.find(e => e.item.id === item.id)
             cartElement.count = cartElement.count + count
             cartAux = [...cartItems]
         } else {
             cartAux = [cartElement, ...cartItems]
         }
         setCartItems(cartAux)
+        //addProductStorage()
+    }
+
+    const addProductStorage = () => {
+        localStorage.setItem('cartProducts', JSON.stringify(cartItems))
     }
 
     const removeItem = (item) => {
         if (isInCart(item)) {
-            const cartElements = cartItems.filter(element => element.item.id !== item.id) || []
+            const cartElements = cartItems.filter(e => e.item.id !== item.id) || []
             setCartItems([...cartElements])
         }
     }
@@ -38,21 +41,21 @@ const CartProvider = ({ children }) => {
     }
 
     const isInCart = (item) => {
-        return cartItems && cartItems.some(element => element.item.id === item.id)
+        return cartItems && cartItems.some(e => e.item.id === item.id)
     }
 
     const removeOneItem = item => {
         if (isInCart(item)) {
-            let cartElement = cartItems.find(element => element.item.id === item.id)
+            let cartElement = cartItems.find(e => e.item.id === item.id)
             if (cartElement.count === 1) {
                 removeItem(item)
             } else {
                 let cart = cartItems
-                cart.map(element => {
-                    if (element.item.id === item.id) {
-                        element.count = element.count - 1
+                cart.map(e => {
+                    if (e.item.id === item.id) {
+                        e.count = e.count - 1
                     }
-                    return element
+                    return e
                 })
                 setCartItems([...cart])
             }
@@ -61,23 +64,23 @@ const CartProvider = ({ children }) => {
 
     const handleTotalPriceByItem = () => {
         let newCartItems = cartItems
-        const totalPriceCart = newCartItems.map(element => {
+        const totalPriceCart = newCartItems.map(e => {
             return {
-                ...element,
-                price: element.item.price * element.count
+                ...e,
+                price: e.item.price * e.count
             }
         })
         return totalPriceCart
     }
 
-    const handleTotal = () => {
+    /* const handleTotal = () => {
         const initialValue = 0
         return (
             cartItems && cartItems.reduce((accumulator, currentValue) => {
                 return accumulator + currentValue.count
             }, initialValue)
         )
-    }
+    } */
 
     const handleTotalPrice = () => {
         const cartAux = handleTotalPriceByItem()
@@ -95,8 +98,8 @@ const CartProvider = ({ children }) => {
         isInCart,
         removeOneItem,
         cartItems,
-        total,
-        price,
+        /* total, */
+        totalPrice,
         handleTotalPriceByItem
     }
 

@@ -48,7 +48,9 @@ function ItemDetails(details) {
 
     return (
         <div className="item">
-            <img className="item__image" src={`/assets/productos/${image}`} alt="" />
+            {/* ToDo: Reemplazar estas lineas para mostrar las imagenes desde Firebase */}
+            {/* <img className="item__image" src={`/assets/productos/${image}`} alt="" /> */}
+            <img className="item__image" src={image} alt="" />
             <div className="item__content">
                 <h2 className="item__title">{title}</h2>
                 <p className="item__price">$ {price} USD</p>

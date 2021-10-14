@@ -14,7 +14,9 @@ const ItemCart = ({ item, count }) => {
 
     return (
         <div className="itemCart" key={id}>
-            <img src={`/assets/productos/${image}`} alt="" />
+            {/* ToDo: Reemplazar estas lineas para mostrar las imagenes desde Firebase */}
+            {/* <img src={`/assets/productos/${image}`} alt="" /> */}
+            <img src={image} alt="" />
             <p>{title}</p>
             <p>{count}</p>
             <p>x ${price}</p>
