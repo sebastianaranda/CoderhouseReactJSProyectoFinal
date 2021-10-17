@@ -6,9 +6,11 @@ const CartProvider = ({ children }) => {
     //Custom Provider
     const [cartItems, setCartItems] = useState([])
     const [totalPrice, setTotalPrice] = useState(0)
+    const [totalItems, setTotalItems] = useState(0)
 
     useEffect(() => {
         setTotalPrice(handleTotalPrice())
+        setTotalItems(handleTotalItems())
     }, [cartItems])
 
     const addItem = (item, count) => {
@@ -73,14 +75,14 @@ const CartProvider = ({ children }) => {
         return totalPriceCart
     }
 
-    /* const handleTotal = () => {
+    const handleTotalItems = () => {
         const initialValue = 0
         return (
             cartItems && cartItems.reduce((accumulator, currentValue) => {
                 return accumulator + currentValue.count
             }, initialValue)
         )
-    } */
+    }
 
     const handleTotalPrice = () => {
         const cartAux = handleTotalPriceByItem()
@@ -98,8 +100,8 @@ const CartProvider = ({ children }) => {
         isInCart,
         removeOneItem,
         cartItems,
-        /* total, */
         totalPrice,
+        totalItems,
         handleTotalPriceByItem
     }
 

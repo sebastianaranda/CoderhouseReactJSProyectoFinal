@@ -4,19 +4,35 @@
     height: 100vh;
     position: fixed;
     top: 0;
-    right: -400px;
+    right: -450px;
     box-sizing: border-box;
     text-align: left;
     padding: 18px;
     transition: ease-in-out 300ms;
     color: black;
-    & .closeIcon{
-        font-size: 32px;
-        color: black;
-        cursor: pointer;
+    box-shadow: -3px 0px 8px 0px rgba(0,0,0,0.25);
+    -webkit-box-shadow: -3px 0px 8px 0px rgba(0,0,0,0.25);
+    -moz-box-shadow: -3px 0px 8px 0px rgba(0,0,0,0.25);
+    & .mainContainer{
         width: 100%;
-        text-align: right;
-        box-sizing: border-box;
+        height: 100vh;
+        position: relative;
+    }
+    & .header{
+        width: 100%;
+        height: 80px;
+        & .closeIcon{
+            font-size: 32px;
+            color: black;
+            cursor: pointer;
+            width: 100%;
+            text-align: right;
+            box-sizing: border-box;
+        }
+        & .title{
+            color: black;
+            margin: 0;
+        }
     }
     & .cartListContainer{
         height: 80vh;
@@ -24,21 +40,50 @@
         overflow-y: auto;
         overflow-x: hidden;
     }
-    & .title{
-        color: black;
-        margin: 0;
-    }
-    & .clearCart{
-        width: 100%;
-        margin: 0;
-        margin-top: auto;
-        text-align: center;
-        cursor: pointer;
-        &:hover{
-            text-decoration: underline;
-        }
-    }
     &.active{
         right: 0px;
+    }
+    & .footer{
+        display: flex;
+        flex-flow: row nowrap;
+        position: absolute;
+        height: 100px;
+        width: 100%;
+        background-color: whitesmoke;
+        bottom: 0px;
+        justify-content: space-between;
+        align-items: center;
+        & .clearCart{
+            width: 100%;
+            margin-right: 15px;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 6px;
+            border: 1px solid black;
+            height: 48px;
+            background-color: transparent;
+            color: black;
+            font-weight: 600;
+            text-transform: uppercase;
+            &:hover{
+                background-color: hsl(0%, 0, 90)
+            }
+        }
+        & .generateOrder{
+            width: 100%;
+            margin-left: 15px;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 6px;
+            border: none;
+            height: 48px;
+            background-color: black;
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            &:hover{
+                background-color: rgb(53, 53, 53);
+            }
+        }
     }
 }

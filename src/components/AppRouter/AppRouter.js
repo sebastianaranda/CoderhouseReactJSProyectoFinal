@@ -5,6 +5,7 @@ import ContactPage from "../../pages/ContactPage";
 import NotFoundPage from "../../pages/NotFoundPage";
 import DetailsPage from "../../pages/DetailsPage";
 import CategoryPage from "../../pages/CategoryPage";
+import CheckoutPage from "../../pages/CheckoutPage";
 import NavBar from "../NavBar/NavBar";
 //context
 import { CartProvider } from "../context/CartContext";
@@ -18,6 +19,7 @@ export default function AppRouter() {
                     <Route path="/contacto" component={ContactPage} />
                     <Route path="/item/:id" component={DetailsPage} />
                     <Route path='/category/:id' component={CategoryPage} />
+                    <Route path='/cart' component={CheckoutPage} />
                     <Route exact path="/" component={HomePage} />
                     <Route path="*" component={NotFoundPage} />
                 </Switch>

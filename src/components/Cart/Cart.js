@@ -7,6 +7,7 @@ import ItemCart from "../ItemCart/ItemCart";
 import db from "../../firebase";
 import { collection, addDoc } from "@firebase/firestore";
 import { async } from "@firebase/util";
+import { Link } from "react-router-dom";
 
 export default function Cart({ show, hide }) {
 
@@ -35,19 +36,27 @@ export default function Cart({ show, hide }) {
 
     return (
         <div className={`cartContainer ${show ? 'active' : ''}`}>
-            <div className='closeIcon'>
-                <FontAwesomeIcon icon={faTimes} onClick={hide} />
+            <div className='mainContainer'>
+                <div className='header'>
+                    <div className='closeIcon'>
+                        <FontAwesomeIcon icon={faTimes} onClick={hide} />
+                    </div>
+                    <p className='title'>Tu carrito</p>
+                </div>
+                <div className='cartListContainer'>
+                    {cartItems.length !== 0 ? (
+                        cartItems.map(e => {
+                            return <ItemCart key={e.item.id} {...e} />
+                        })
+                    ) : (<div>Usted no tiene productos en el carrito.</div>)}
+                </div>
+                <div className='footer' >
+                    <button className='clearCart' onClick={clear} >Vaciar carrito</button>
+                    <Link to='/cart'>
+                        <button className='generateOrder' onClick={hide} /* onClick={handlerGenerateOrder} */ >Ir al checkout</button>
+                    </Link>
+                </div>
             </div>
-            <p className='title'>Tu carrito</p>
-            <div className='cartListContainer'>
-                {cartItems.length !== 0 ? (
-                    cartItems.map(e => {
-                        return <ItemCart key={e.item.id} {...e} />
-                    })
-                ) : (<div>Usted no tiene productos en el carrito.</div>)}
-            </div>
-            <p className='clearCart' onClick={clear}>Vaciar carrito</p>
-            <p className='clearCart' onClick={handlerGenerateOrder} >Generar orden</p>
         </div>
     )
 }
