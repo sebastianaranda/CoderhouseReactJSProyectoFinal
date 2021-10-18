@@ -51,10 +51,16 @@ export default function Cart({ show, hide }) {
                     ) : (<div>Usted no tiene productos en el carrito.</div>)}
                 </div>
                 <div className='footer' >
-                    <button className='clearCart' onClick={clear} >Vaciar carrito</button>
-                    <Link to='/cart'>
-                        <button className='generateOrder' onClick={hide} /* onClick={handlerGenerateOrder} */ >Ir al checkout</button>
-                    </Link>
+                    <div className='price-container'>
+                        <p>Total de su compra:</p>
+                        <p>$ {totalPrice}</p>
+                    </div>
+                    <div className='buttons-container'>
+                        <button className='clearCart' onClick={clear} >Vaciar</button>
+                        <Link to='/cart'>
+                            <button className='generateOrder' onClick={hide} /* onClick={handlerGenerateOrder} */ >Ir a Checkout</button>
+                        </Link>
+                    </div>
                 </div>
             </div>
         </div>

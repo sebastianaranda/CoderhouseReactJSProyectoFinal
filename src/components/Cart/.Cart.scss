@@ -3,6 +3,7 @@
     background-color: whitesmoke;
     height: 100vh;
     position: fixed;
+    z-index: 1;
     top: 0;
     right: -450px;
     box-sizing: border-box;
@@ -17,73 +18,93 @@
         width: 100%;
         height: 100vh;
         position: relative;
-    }
-    & .header{
-        width: 100%;
-        height: 80px;
-        & .closeIcon{
-            font-size: 32px;
-            color: black;
-            cursor: pointer;
+        & .header{
             width: 100%;
-            text-align: right;
-            box-sizing: border-box;
+            height: 80px;
+            & .closeIcon{
+                font-size: 32px;
+                color: black;
+                cursor: pointer;
+                width: 100%;
+                text-align: right;
+                box-sizing: border-box;
+            }
+            & .title{
+                color: black;
+                margin: 0;
+            }
         }
-        & .title{
-            color: black;
-            margin: 0;
+        & .cartListContainer{
+            height: 80vh;
+            width: 100%;
+            overflow-y: auto;
+            overflow-x: hidden;
         }
-    }
-    & .cartListContainer{
-        height: 80vh;
-        width: 100%;
-        overflow-y: auto;
-        overflow-x: hidden;
-    }
-    &.active{
-        right: 0px;
-    }
-    & .footer{
+        & .footer{
         display: flex;
-        flex-flow: row nowrap;
+        flex-flow: column nowrap;
         position: absolute;
-        height: 100px;
+        height: 130px;
         width: 100%;
         background-color: whitesmoke;
         bottom: 0px;
-        justify-content: space-between;
-        align-items: center;
-        & .clearCart{
-            width: 100%;
-            margin-right: 15px;
-            text-align: center;
-            cursor: pointer;
-            border-radius: 6px;
-            border: 1px solid black;
-            height: 48px;
-            background-color: transparent;
-            color: black;
-            font-weight: 600;
-            text-transform: uppercase;
-            &:hover{
-                background-color: hsl(0%, 0, 90)
+        justify-content: flex-start;
+        align-items: stretch;
+        & .price-container{
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            align-items: center;
+            & p:last-child{
+                font-weight: 600;
             }
         }
-        & .generateOrder{
+        & .buttons-container{
+            display: flex;
+            flex-flow: row nowrap;
             width: 100%;
-            margin-left: 15px;
-            text-align: center;
-            cursor: pointer;
-            border-radius: 6px;
-            border: none;
-            height: 48px;
-            background-color: black;
-            color: white;
-            font-weight: 600;
-            text-transform: uppercase;
-            &:hover{
-                background-color: rgb(53, 53, 53);
+            justify-content: space-between;
+            align-items: center;
+            & .clearCart{
+                width: 40%;
+                margin-right: 15px;
+                text-align: center;
+                cursor: pointer;
+                border-radius: 6px;
+                border: 1px solid black;
+                height: 48px;
+                background-color: transparent;
+                color: black;
+                font-weight: 600;
+                text-transform: uppercase;
+                &:hover{
+                    background-color: hsl(0%, 0, 90)
+                }
+            }
+            & a{
+                box-sizing: border-box;
+                width: 60%;
+                padding: 0;
+                & .generateOrder{
+                    width: 100%;
+                    text-align: center;
+                    cursor: pointer;
+                    border-radius: 6px;
+                    border: none;
+                    height: 48px;
+                    background-color: black;
+                    color: white;
+                    font-weight: 600;
+                    text-transform: uppercase;
+                    &:hover{
+                        background-color: rgb(53, 53, 53);
+                    }
+                }
             }
         }
+        }
+    }  
+    &.active{
+        right: 0px;
     }
 }

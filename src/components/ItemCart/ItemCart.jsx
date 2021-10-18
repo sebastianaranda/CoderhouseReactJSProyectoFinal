@@ -18,8 +18,8 @@ const ItemCart = ({ item, count }) => {
             {/* <img src={`/assets/productos/${image}`} alt="" /> */}
             <img src={image} alt="" />
             <p>{title}</p>
-            <p>{count}</p>
-            <p>x ${price}</p>
+            <p>$ {price} </p>
+            <p>x {count}</p>
             <FontAwesomeIcon icon={faTrashAlt} className='delete' onClick={handleRemoveOneItem} />
         </div>
     )
