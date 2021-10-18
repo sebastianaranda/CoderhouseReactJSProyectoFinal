@@ -16,9 +16,7 @@ const Item = (item) => {
             <div className="producto">
                 <Link to={`/item/${id}`}>
                     <div className="imagen-container">
-                        {/* ToDo: Reemplazar estas lineas para mostrar las imagenes desde Firebase */}
-                        {/* <img src={`/assets/productos/${image}`} alt="" className="producto__imagen" /> */}
-                        < img src={image} alt="" className="producto__imagen" />
+                        <img src={`/assets/productos/${image}`} alt="" className="producto__imagen" />
                     </div>
                     <h3 className="producto__titulo">{title}</h3>
                     <p className="producto__precio">$ {price} USD</p>

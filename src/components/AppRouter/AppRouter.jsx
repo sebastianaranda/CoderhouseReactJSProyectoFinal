@@ -10,7 +10,7 @@ import NavBar from "../NavBar/NavBar";
 //context
 import { CartProvider } from "../context/CartContext";
 
-export default function AppRouter() {
+const AppRouter = () => {
     return (
         <BrowserRouter>
             <CartProvider>
@@ -18,7 +18,7 @@ export default function AppRouter() {
                 <Switch>
                     <Route path="/contacto" component={ContactPage} />
                     <Route path="/item/:id" component={DetailsPage} />
-                    <Route path='/category/:id' component={CategoryPage} />
+                    <Route path='/category/:category' component={CategoryPage} />
                     <Route path='/cart' component={CheckoutPage} />
                     <Route exact path="/" component={HomePage} />
                     <Route path="*" component={NotFoundPage} />
@@ -27,3 +27,5 @@ export default function AppRouter() {
         </BrowserRouter>
     )
 }
+
+export default AppRouter;

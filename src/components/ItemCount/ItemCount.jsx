@@ -4,7 +4,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { faMinus } from '@fortawesome/free-solid-svg-icons'
 import { Link } from "react-router-dom";
 
-export default function ItemCount(props) {
+const ItemCount = (props) => {
 
     return (
         <div className="itemCount">
@@ -20,3 +20,5 @@ export default function ItemCount(props) {
         </div>
     )
 }
+
+export default ItemCount;

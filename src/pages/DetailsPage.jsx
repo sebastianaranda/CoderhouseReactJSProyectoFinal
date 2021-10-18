@@ -1,7 +1,7 @@
 import React from "react";
 import ItemDetailContainer from "../components/ItemDetailContainer/ItemDetailContainer";
 
-export default function DetailsPage() {
+const DetailsPage = () => {
 
     return (
         <>
@@ -9,3 +9,4 @@ export default function DetailsPage() {
         </>
     )
 }
+export default DetailsPage;

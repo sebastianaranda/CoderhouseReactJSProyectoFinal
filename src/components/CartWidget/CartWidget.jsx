@@ -4,7 +4,7 @@ import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import Cart from "../Cart/Cart";
 import CartContext from "../context/CartContext";
 
-export default function CardWidget() {
+const CardWidget = () => {
 
     const [showCart, setShowCart] = useState(false)
     const { totalItems } = useContext(CartContext)
@@ -25,3 +25,5 @@ export default function CardWidget() {
         </div>
     )
 }
+
+export default CardWidget;

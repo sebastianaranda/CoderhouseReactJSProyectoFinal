@@ -4,7 +4,7 @@ import ItemCount from '../ItemCount/ItemCount';
 import CartContext from '../context/CartContext';
 import { useContext } from 'react';
 
-function ItemDetails(details) {
+const ItemDetails = (details) => {
     const { id, image, title, price, description, itemStock } = details;
 
     const { addItem } = useContext(CartContext)
@@ -48,9 +48,7 @@ function ItemDetails(details) {
 
     return (
         <div className="item">
-            {/* ToDo: Reemplazar estas lineas para mostrar las imagenes desde Firebase */}
-            {/* <img className="item__image" src={`/assets/productos/${image}`} alt="" /> */}
-            <img className="item__image" src={image} alt="" />
+            <img className="item__image" src={`/assets/productos/${image}`} alt="" />
             <div className="item__content">
                 <h2 className="item__title">{title}</h2>
                 <p className="item__price">$ {price} USD</p>

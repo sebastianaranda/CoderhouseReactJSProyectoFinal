@@ -39,7 +39,7 @@
         font-weight: 600;
         text-transform: uppercase;
         &:hover{
-            background-color: hsl(0%, 0, 90)
+            background-color: hsl(0, 0%, 90%)
         }
     }
 }
@@ -64,7 +64,7 @@
         font-size: 1rem;
         font-weight: 400;
         line-height: 1.5;
-        border: 1px solid hsl(0, 0, 70%);
+        border: 1px solid hsl(0, 0%, 70%);
         border-radius: .25rem;
         box-sizing: border-box;
         margin: 10px 0;
@@ -72,7 +72,7 @@
         transition: border-color .15s ease-in-out,
                     box-shadow .15s ease-in-out;
         &:focus{
-            border-color: hsl(0, 0, 0%);;
+            border-color: hsl(0, 0%, 0%);;
             outline: 0;
         }
     }
