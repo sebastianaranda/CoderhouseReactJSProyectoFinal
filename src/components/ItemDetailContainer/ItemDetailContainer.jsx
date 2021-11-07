@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from "react-router";
 import ItemDetails from '../ItemDetail/ItemDetail';
-//BORRAR
+import CircularProgress from '@mui/material/CircularProgress';
 //firebase
 import db from "../../firebase";
 import { doc, getDoc, getDocs } from "@firebase/firestore";
@@ -26,15 +26,15 @@ const ItemDetailContainer = () => {
     }, [])
 
     return (
-        <>
+        <div className='itemDetailContainer'>
             {
                 itemData.length !== 0 ? (
                     <ItemDetails key={itemData.id} id={itemData.id} image={itemData.image} title={itemData.title} price={itemData.price} description={itemData.description} itemStock={itemData.stock} />
                 ) : (
-                    <h2>Página no encontrada</h2>
+                    <CircularProgress className='circularProgress' sx={{ color: 'black' }} />
                 )
             }
-        </>
+        </div>
     )
 }
 

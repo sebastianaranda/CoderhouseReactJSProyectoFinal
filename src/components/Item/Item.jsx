@@ -11,8 +11,10 @@ const Item = (item) => {
         addItem(item, 1)
     }
 
+    console.log('ID del productio', id)
+
     return (
-        <div className='container'>
+        <div div className='container' >
             <div className="producto">
                 <Link to={`/item/${id}`}>
                     <div className="imagen-container">
@@ -24,7 +26,7 @@ const Item = (item) => {
                 </Link>
                 <button className="btnComprar" onClick={handleOnAdd}>Añadir al carrito</button>
             </div>
-        </div>
+        </div >
     )
 }
 

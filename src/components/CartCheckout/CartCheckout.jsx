@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import ItemCart from "../ItemCart/ItemCart";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 //context
 import CartContext from "../context/CartContext";
 //Firebase
@@ -11,6 +11,9 @@ import { async } from "@firebase/util";
 const CartCheckout = () => {
 
     const { cartItems, clear, totalPrice } = useContext(CartContext)
+    const history = useHistory();
+
+    let orderID;
 
     const newOrder = {
         buyer: {
@@ -31,6 +34,13 @@ const CartCheckout = () => {
         const orderFirebase = collection(db, 'orders');
         const order = await addDoc(orderFirebase, newOrder);
         console.log('Se genero la orden con el id: ', order.id)
+        orderID = order.id;
+        routeChange()
+    }
+
+    const routeChange = () => {
+        let path = `/order/${orderID}`;
+        history.push(path);
     }
 
     return (

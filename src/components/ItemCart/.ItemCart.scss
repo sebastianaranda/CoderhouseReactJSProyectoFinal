@@ -10,7 +10,22 @@
     & img{
         width: 100px;
     }
+    & .titleAndCount{
+        display: flex;
+        flex-flow: column;
+        align-content: center;
+        justify-content: flex-start;
+        margin-left: 15px;
+        margin-right: auto;
+        & p{
+            margin: 0;
+        }
+    }
+    & .price{
+        font-weight: 700;
+    }
     & .delete{
         cursor: pointer;
+        margin-left: 15px;
     }
 }

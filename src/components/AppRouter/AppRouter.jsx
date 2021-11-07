@@ -9,6 +9,7 @@ import CheckoutPage from "../../pages/CheckoutPage";
 import NavBar from "../NavBar/NavBar";
 //context
 import { CartProvider } from "../context/CartContext";
+import OrderPage from "../../pages/OrderPage";
 
 const AppRouter = () => {
     return (
@@ -20,6 +21,7 @@ const AppRouter = () => {
                     <Route path="/item/:id" component={DetailsPage} />
                     <Route path='/category/:category' component={CategoryPage} />
                     <Route path='/cart' component={CheckoutPage} />
+                    <Route path='/order/:orderID' component={OrderPage} />
                     <Route exact path="/" component={HomePage} />
                     <Route path="*" component={NotFoundPage} />
                 </Switch>

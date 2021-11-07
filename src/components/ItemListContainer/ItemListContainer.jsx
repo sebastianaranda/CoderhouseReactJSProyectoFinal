@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 import ItemList from "../ItemList/ItemList";
 //firebase
 import db from "../../firebase";
-import { collection, getDocs } from "@firebase/firestore";
+import { collection, getDocs, query, where } from "@firebase/firestore";
 
 const ItemListContainer = () => {
     //PRUEBA
@@ -16,21 +16,23 @@ const ItemListContainer = () => {
 
     async function getProducts(db) {
         const productsList = [];
-        const productsCol = collection(db, 'products')
-        const productSnapshot = await getDocs(productsCol)
-        const productsSnap = productSnapshot.docs.map(doc => doc.data())
-        const idSnap = productSnapshot.docs.map(doc => doc.id)
 
-        for (let i = 0; i < productsSnap.length; i++) {
-            productsList.push({ ...productsSnap[i], id: idSnap[i] })
+        let items = category
+            ? query(
+                collection(db, 'products'),
+                where('category', '==', category)
+            )
+            : collection(db, 'products')
+
+        const itemsSnapshot = await getDocs(items)
+        const listaItem = itemsSnapshot.docs.map(doc => doc.data())
+        const listaItemID = itemsSnapshot.docs.map(doc => doc.id)
+
+        for (let i = 0; i < listaItem.length; i++) {
+            productsList.push({ ...listaItem[i], id: listaItemID[i] })
         }
-        let filteredArray;
-        if (category == null) {
-            return setItemsData(productsList)
-        } else {
-            filteredArray = productsList.filter(productList => productList.category === category)
-            return setItemsData(filteredArray)
-        }
+
+        return setItemsData(productsList)
     }
 
     return (

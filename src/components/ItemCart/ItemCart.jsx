@@ -15,9 +15,11 @@ const ItemCart = ({ item, count }) => {
     return (
         <div className="itemCart" key={id}>
             <img src={`/assets/productos/${image}`} alt="" />
-            <p>{title}</p>
-            <p>$ {price} </p>
-            <p>x {count}</p>
+            <div className='titleAndCount'>
+                <p>{title}</p>
+                <p>x {count}</p>
+            </div>
+            <p className='price'>${price} </p>
             <FontAwesomeIcon icon={faTrashAlt} className='delete' onClick={handleRemoveOneItem} />
         </div>
     )

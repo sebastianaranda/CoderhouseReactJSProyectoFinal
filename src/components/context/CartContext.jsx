@@ -4,13 +4,15 @@ const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
     //Custom Provider
-    const [cartItems, setCartItems] = useState([])
+    //const [cartItems, setCartItems] = useState([])
+    const [cartItems, setCartItems] = useState(JSON.parse(localStorage.getItem('cartProducts')) || [])
     const [totalPrice, setTotalPrice] = useState(0)
     const [totalItems, setTotalItems] = useState(0)
 
     useEffect(() => {
         setTotalPrice(handleTotalPrice())
         setTotalItems(handleTotalItems())
+        addProductStorage()
     }, [cartItems])
 
     const addItem = (item, count) => {
@@ -24,7 +26,6 @@ const CartProvider = ({ children }) => {
             cartAux = [cartElement, ...cartItems]
         }
         setCartItems(cartAux)
-        //addProductStorage()
     }
 
     const addProductStorage = () => {

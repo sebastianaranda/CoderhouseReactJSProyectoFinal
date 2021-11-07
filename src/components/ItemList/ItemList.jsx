@@ -1,5 +1,6 @@
 import React from 'react';
 import Item from '../Item/Item';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const ItemList = (props) => {
 
@@ -11,7 +12,7 @@ const ItemList = (props) => {
                 itemArray.map((item) => {
                     return <Item key={item.id} id={item.id} image={item.image} title={item.title} price={item.price} description={item.description} />
                 })
-            ) : (<div>Cargando...</div>)}
+            ) : (<CircularProgress className='circularProgress' sx={{ color: 'black' }} />)}
         </div>
     )
 }

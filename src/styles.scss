@@ -9,7 +9,11 @@
 @import './components/Cart/.Cart.scss';
 @import './components/ItemCart/.ItemCart.scss';
 @import './components/CartCheckout/.CartCheckout.scss';
+@import './components/Order/.Order.scss';
 
 .buttonProduct{
     width: 400px;
+}
+.circularProgress{
+    margin: 60px auto 0 auto;
 }
