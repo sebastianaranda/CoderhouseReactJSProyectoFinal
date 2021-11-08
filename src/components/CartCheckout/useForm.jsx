@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import validateInfo from './validateInfo'
 
-const useForm = (validateInfo) => {
+const useForm = validateInfo => {
     const [values, setValues] = useState({
         firstNameUser: '',
         lastNameUser: '',
@@ -14,8 +14,7 @@ const useForm = (validateInfo) => {
     })
 
     const [errors, setErrors] = useState({})
-    const [isSubmitting, setIsSubmitting] = useState(false)
-
+    const [submit, setSubmit] = useState(false)
 
     const handleChange = e => {
         const { name, value } = e.target
@@ -28,10 +27,10 @@ const useForm = (validateInfo) => {
     const handleSubmit = e => {
         e.preventDefault()
         setErrors(validateInfo(values))
-        setIsSubmitting(true)
+        setSubmit(true)
     }
 
-    return { handleChange, handleSubmit, values, errors, isSubmitting }
+    return { handleChange, handleSubmit, values, errors, submit }
 }
 
 export default useForm;

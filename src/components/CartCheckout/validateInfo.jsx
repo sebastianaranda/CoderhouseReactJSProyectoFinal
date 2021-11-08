@@ -2,38 +2,37 @@ export default function validateInfo(values) {
     let errors = {}
 
     if (!values.firstNameUser.trim()) {
-        errors.firstNameUser = 'Name required'
+        errors.firstNameUser = 'Debe ingresar un nombre'
     }
 
     if (!values.lastNameUser.trim()) {
-        errors.lastNameUser = 'Last Name required'
+        errors.lastNameUser = 'Debe ingresar un apellido'
     }
 
     if (!values.emailUser) {
-        errors.emailUser = 'Email required'
+        errors.emailUser = 'Debe ingresar un email'
     } else if (!/\S+@\S+\.\S+/.test(values.emailUser)) {
-        errors.emailUser = 'Email address is invalid';
+        errors.emailUser = 'El email no es valido';
     }
 
     if (!values.phoneUser.trim()) {
-        errors.phoneUser = 'Phone required'
+        errors.phoneUser = 'Debe ingresar un telefono'
     }
 
     if (!values.addressUser.trim()) {
-        errors.addressUser = 'Address required'
+        errors.addressUser = 'Debe ingresar una direccion'
     }
 
     if (!values.cityUser.trim()) {
-        errors.cityUser = 'City required'
+        errors.cityUser = 'Debe ingresar una ciudad'
     }
 
     if (!values.postalCodeUser.trim()) {
-        errors.postalCodeUser = 'PostalCode required'
+        errors.postalCodeUser = 'Codigo Postal obligatorio'
     }
 
     if (!values.stateUser.trim()) {
-        errors.stateUser = 'State required'
+        errors.stateUser = 'Debe ingresar una provincia'
     }
-
     return errors;
 }

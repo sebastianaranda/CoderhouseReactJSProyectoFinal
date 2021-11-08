@@ -3,8 +3,6 @@ import React, { createContext, useEffect, useState } from 'react';
 const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
-    //Custom Provider
-    //const [cartItems, setCartItems] = useState([])
     const [cartItems, setCartItems] = useState(JSON.parse(localStorage.getItem('cartProducts')) || [])
     const [totalPrice, setTotalPrice] = useState(0)
     const [totalItems, setTotalItems] = useState(0)

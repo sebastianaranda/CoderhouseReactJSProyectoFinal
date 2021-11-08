@@ -16,8 +16,6 @@ const ItemDetailContainer = () => {
         const docSnap = await getDoc(docRef)
         if (docSnap.exists()) {
             setItemData(docSnap.data())
-        } else {
-            console.log('ERROR: ', itemData)
         }
     }
 

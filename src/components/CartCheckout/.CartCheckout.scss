@@ -90,11 +90,14 @@
         flex-flow: row nowrap;
         width: 100%;
         box-sizing: border-box;
-        & .input-style{
-            width: 70%;
+        & div{
+            display: flex;
+            flex-flow: column;
+            width: 60%;
+            box-sizing: border-box;
             &:last-child{
-                width: 30%;
-                margin-left: 20px;
+                width: 40%;
+                padding-left: 20px;
             }
         }
     }

@@ -11,8 +11,6 @@ const Item = (item) => {
         addItem(item, 1)
     }
 
-    console.log('ID del productio', id)
-
     return (
         <div div className='container' >
             <div className="producto">

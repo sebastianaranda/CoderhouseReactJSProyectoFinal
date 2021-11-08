@@ -108,14 +108,12 @@ a{
 
 @media only screen and (max-width: 720px) {
     .navBar{
-        background-color: red;
         padding: 0 30px;
     }
 }
 
 @media only screen and (max-width: 400px) {
     .navBar{
-        background-color: blue;
         padding: 0 15px;
         &__logo{
             display: none;
