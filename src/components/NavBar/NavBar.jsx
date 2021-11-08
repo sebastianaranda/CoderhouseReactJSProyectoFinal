@@ -1,9 +1,22 @@
+import React, { useContext } from 'react';
 import './.NavBar.scss';
 import logo from '../../assets/logo_authorized_reseller.svg';
 import CardWidget from '../CartWidget/CartWidget';
 import { Link } from 'react-router-dom';
+//context
+import CartContext from "../context/CartContext";
 
 const NavBar = () => {
+
+    const { cartItems } = useContext(CartContext)
+
+    const openSubMenu = (e) => {
+        if (e.target.classList.contains('show')) {
+            e.target.classList.remove('show')
+        } else {
+            e.target.classList.add('show')
+        }
+    }
 
     return (
         <header className="navBar">
@@ -13,9 +26,9 @@ const NavBar = () => {
             <nav className="navBar__nav">
                 <ul className='navBar__menu'>
                     <Link to="/">
-                        <li>Inicio</li>
+                        <li>Tienda</li>
                     </Link>
-                    <li className='navBar__productos'>Productos
+                    <li className='navBar__productos' onClick={openSubMenu}>Productos
                         <ul className='submenu'>
                             <Link to="/category/iphone">
                                 <div>iPhone</div>
@@ -31,13 +44,17 @@ const NavBar = () => {
                             </Link>
                         </ul>
                     </li>
-                    <Link to="/faqs">
-                        <li>Contacto</li>
-                    </Link>
                 </ul>
             </nav>
             <div className="navBar__cart">
-                <CardWidget />
+                {
+                    cartItems.length !== 0 ? (
+                        <CardWidget />
+                    )
+                        :
+                        (<></>)
+                }
+
             </div>
         </header>
     )

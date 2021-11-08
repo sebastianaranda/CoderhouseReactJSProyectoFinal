@@ -3,9 +3,7 @@ import CartCheckout from "../components/CartCheckout/CartCheckout";
 
 const CheckoutPage = () => {
     return (
-        <div>
-            <CartCheckout />
-        </div>
+        <CartCheckout />
     )
 }
 

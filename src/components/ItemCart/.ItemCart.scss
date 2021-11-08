@@ -29,3 +29,10 @@
         margin-left: 15px;
     }
 }
+@media only screen and (max-width: 400px) {
+    .itemCart{
+        & img{
+            width: 70px;
+        }
+    }
+}

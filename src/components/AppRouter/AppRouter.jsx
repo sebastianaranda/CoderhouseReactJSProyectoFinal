@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import HomePage from "../../pages/HomePage";
-import ContactPage from "../../pages/ContactPage";
 import NotFoundPage from "../../pages/NotFoundPage";
 import DetailsPage from "../../pages/DetailsPage";
 import CategoryPage from "../../pages/CategoryPage";
@@ -17,7 +16,6 @@ const AppRouter = () => {
             <CartProvider>
                 <NavBar />
                 <Switch>
-                    <Route path="/contacto" component={ContactPage} />
                     <Route path="/item/:id" component={DetailsPage} />
                     <Route path='/category/:category' component={CategoryPage} />
                     <Route path='/cart' component={CheckoutPage} />

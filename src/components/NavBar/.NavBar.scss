@@ -65,6 +65,8 @@
                 color: red;
                 &:last-child div{
                     border: none;
+                    border-bottom-left-radius: 6px;
+                    border-bottom-right-radius: 6px;
                 }
             }
             & div{
@@ -101,5 +103,34 @@ a{
     text-decoration: none;
     & li{
         padding: 0px 15px 0px 15px;
+    }
+}
+
+@media only screen and (max-width: 720px) {
+    .navBar{
+        background-color: red;
+        padding: 0 30px;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .navBar{
+        background-color: blue;
+        padding: 0 15px;
+        &__logo{
+            display: none;
+        }
+        &__menu{
+            justify-content: flex-start;
+        }
+        &__productos{
+            & .submenu{
+                left: 0;
+                width: 100%;
+            }
+            &.show .submenu{
+                display: flex;
+            }
+        }
     }
 }
